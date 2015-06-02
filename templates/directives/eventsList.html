@@ -1,0 +1,25 @@
+			<a href="#/eventDetails/{{x.eventId}}"> 
+				<div class="row">
+					<h3 class="col-md-8">{{x.name}}</h3>
+				</div>
+				<div class="row">
+					<span class="col-md-3">Date:</span>
+					<span>{{x.date | date:'mediumDate'}}</span>
+				</div>
+				<div class="row">
+					<span class="col-md-3">Time:</span>
+					<span>{{x.time}}</span>
+				</div>
+				<div class="row">
+					<span class="col-md-3">Location:</span>
+					<span>{{x.location.address}}</span>
+				</div>
+				<div class="row">
+					<span class="col-md-3">&nbsp;</span>
+					<span>{{x.location.city}}, {{x.location.state}}</span>
+				</div>
+				<div class="row">
+					<span class="col-md-3">&nbsp;</span>
+					<span>{{x.location.country}}</span>
+				</div>
+			</a>

@@ -1,0 +1,67 @@
+		<div style="padding: 20px">
+			<div class="row">
+				<button type="button" class="btn btn-primary" ng-click="scrollToSession()">Scroll</button>
+				<button type="button" class="btn btn-success" ng-click="reload()">Reload</button>
+				<div class="col-md-12" style="text-align: center;">
+					<img ng-src="{{event.imageUrl}}" alt="{{event.name}}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h2 ng-class="myclass" ng-bind-template="{{event.name | uppercase}} {{event.date}}"></h2>
+					<div class="row">
+						<div class="col-md-6">
+							<div><strong>Date:</strong> {{event.date | date:'mediumDate'}}</div>
+							<div><strong>Time:</strong> {{event.time}}</div>
+							<div><strong>Price:</strong> {{34 | currency}}</div>
+						</div>
+						<div class="col-md-6">
+							<address>
+								<strong>Address:</strong><br>
+								{{event.location.address}}<br>
+								{{event.location.city}}, {{event.location.state}}<br>
+								{{event.location.country}}
+							</address>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<button class="btn" ng-disabled="buttonDisabled">Disabled</button>
+			<div ng-non-bindable>{{1+2}}</div>
+			<div ng-bind-html="snippet">some title</div>
+			<h3 ng-show="boolValue">Show This</h3>
+			<h3 ng-hide="boolValue">Hide This</h3>
+			{{[1,2,3] [2]}}
+			
+			<div>{{3.1415926535 | number:2}}</div>
+			
+			<hr />
+			<h3>Sessions</h3>
+			Order By:
+			<select ng-model="sortorder">
+				<option selected value="name">Name</option>
+				<option value="-upVoteCount">Votes</option>
+			</select>
+			Show:
+			<select ng-model="query.level" >
+				<option selected value="">ALL</option>
+				<option value="introductory">Introductory</option>
+				<option value="intermediate">Intermediate</option>
+				<option value="difficult">Difficult</option>
+			</select>
+			<ul class="session-details">
+				<li ng-repeat="session in event.sessions | orderBy:sortorder | limitTo:3 | filter:query" id="session{{session.id}}">
+					<div class="row">
+						<upvote upvote="upVoteSession(session)" downvote="downVoteSession(session)" count="session.upVoteCount" />
+						<div class="col-md-9 sessionInfo">
+							<collapsible title="{{session.name}}">
+								<strong>{{session.creatorName}}</strong>
+								<p>{{session.duration | durations}}</p>
+								<p>{{session.level}}</p>
+							</collapsible>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
